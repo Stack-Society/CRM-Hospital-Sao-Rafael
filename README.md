@@ -2,8 +2,6 @@
 
 Sistema para captação, distribuição e acompanhamento de leads, registro de contatos e gerenciamento de agendamentos do Hospital São Rafael.
 
-> Projeto em desenvolvimento. Os módulos de administração e call center estão funcionais; a área de recepção ainda possui apenas uma tela de estado.
-
 ## Visão da aplicação
 
 ### Dashboard do call center
