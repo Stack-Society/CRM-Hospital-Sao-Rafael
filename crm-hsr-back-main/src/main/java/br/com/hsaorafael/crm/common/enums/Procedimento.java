@@ -1,0 +1,34 @@
+package br.com.hsaorafael.crm.common.enums;
+
+public enum Procedimento {
+
+    RINOPLASTIA,
+
+    LIPOASPIRACAO,
+
+    ABDOMINOPLASTIA,
+
+    MAMOPLASTIA,
+
+    BLEFAROPLASTIA,
+
+    OTOPLASTIA,
+
+    IMPLANTE_CAPILAR,
+
+    HARMONIZACAO_FACIAL,
+
+    PREENCHIMENTO_LABIAL,
+
+    BOTOX,
+
+    LIFTING_FACIAL,
+
+    GLUTEOPLASTIA,
+
+    PEELING,
+
+    LIMPEZA_DE_PELE,
+
+    BIOESTIMULADOR_DE_COLAGENO
+}

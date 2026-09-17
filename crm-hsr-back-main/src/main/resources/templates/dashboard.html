@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h1>CRM Hospital São Rafael</h1>
+
+        <div class="d-flex gap-2">
+
+            <a href="/leads" class="btn btn-dark">
+                Leads
+            </a>
+
+            <a href="/funcionarios" class="btn btn-dark">
+                Funcionários
+            </a>
+
+            <a href="/contatos" class="btn btn-dark">
+                Registros de contatos
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="card p-3 shadow-sm">
+                <h5>Leads Ativos</h5>
+                <h2 th:text="${leadsAtivos}"></h2>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-3 shadow-sm">
+                <h5>Leads Hoje</h5>
+                <h2 th:text="${leadsHoje}"></h2>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="card shadow-sm mt-4">
+
+        <div class="card-body">
+
+            <h4 class="mb-3">Principais Endpoints da API</h4>
+
+            <ul class="list-group">
+
+                <li class="list-group-item">
+                    GET /api/leads
+                </li>
+
+                <li class="list-group-item">
+                    POST /api/leads
+                </li>
+
+                <li class="list-group-item">
+                    GET /api/funcionarios
+                </li>
+
+                <li class="list-group-item">
+                    POST /api/funcionarios
+                </li>
+
+                <li class="list-group-item">
+                    POST /api/contatos
+                </li>
+
+                <li class="list-group-item">
+                    GET /api/contatos
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <footer class="text-center mt-5 mb-3 text-muted">
+        CRM Hospital São Rafael - Sprint 4
+    </footer>
+
+</div>
+
+</body>
+</html>
