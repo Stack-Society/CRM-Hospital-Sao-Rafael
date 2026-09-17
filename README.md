@@ -65,6 +65,66 @@ Hospital São Rafael/
 └── crm-hsr-back-main/     # API Spring Boot
 ```
 
+## Arquitetura
+
+```mermaid
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "Arial", "fontSize": "16px", "lineColor": "#334155"}}}%%
+flowchart TB
+    Usuario[Usuário do CRM]
+    Integracao[Canal de captação]
+
+    subgraph Frontend[Frontend — React e Vite]
+        direction TB
+        Rotas[React Router<br/>Rotas por perfil]
+        Paginas[Telas e componentes<br/>Administração e Call Center]
+        Auth[AuthContext<br/>Token e sessão]
+        Cliente[Axios<br/>Requisições HTTP]
+
+        Rotas --> Paginas
+        Paginas --> Auth
+        Paginas --> Cliente
+        Auth --> Cliente
+    end
+
+    subgraph Backend[Backend — Spring Boot]
+        direction TB
+        Seguranca[Spring Security<br/>JWT e permissões]
+        Controllers[API REST<br/>Auth • Leads • Agenda • Pessoas • Histórico]
+        Services[Serviços<br/>Regras de negócio]
+        Distribuicao[Distribuição round-robin<br/>de leads]
+        Repositories[Repositories<br/>Spring Data JPA]
+
+        Seguranca --> Controllers
+        Controllers --> Services
+        Services --> Distribuicao
+        Services --> Repositories
+        Distribuicao --> Repositories
+    end
+
+    Banco[(PostgreSQL)]
+
+    Usuario --> Rotas
+    Cliente -->|JSON + Bearer Token| Seguranca
+    Integracao -->|Cadastro público de lead| Seguranca
+    Repositories --> Banco
+
+    classDef entrada fill:#FFF3CD,stroke:#946200,color:#241A00,stroke-width:2px;
+    classDef frontend fill:#D9EFFF,stroke:#0969A2,color:#082F49,stroke-width:2px;
+    classDef backend fill:#DCFCE7,stroke:#1A7F37,color:#12351F,stroke-width:2px;
+    classDef dados fill:#F1E5FF,stroke:#8250DF,color:#2F164B,stroke-width:2px;
+
+    class Usuario,Integracao entrada;
+    class Rotas,Paginas,Auth,Cliente frontend;
+    class Seguranca,Controllers,Services,Distribuicao,Repositories backend;
+    class Banco dados;
+
+    style Frontend fill:#F6FBFF,stroke:#0969A2,stroke-width:2px,color:#082F49;
+    style Backend fill:#F4FFF7,stroke:#1A7F37,stroke-width:2px,color:#12351F;
+    linkStyle default stroke:#334155,stroke-width:2px;
+```
+
+O frontend concentra navegação e apresentação, enquanto a API aplica autenticação, autorização e regras de negócio. A persistência é realizada pelo Spring Data JPA no PostgreSQL, incluindo o controle usado na distribuição circular dos leads.
+
 ## Pré-requisitos
 
 - Java 21
